@@ -19,10 +19,27 @@ function calculerEquation()
       var x = -b / (2 * a);
       document.getElementById('resultat').innerHTML = "La solution double est x = " + x.toFixed(2);
     } else {
+
       var reel = -b / (2 * a);
       var imaginaire = Math.sqrt(Math.abs(discriminant)) / (2 * a);
-      document.getElementById('resultat').innerHTML = "La solution est un nombre complexe : " + reel.toFixed(2) + " + " + imaginaire.toFixed(2) + "i";
+      var solution1 = reel.toFixed(2) + " + " + imaginaire.toFixed(2) + "i";
+      var solution2 = reel.toFixed(2) + " - " + imaginaire.toFixed(2) + "i";
+      document.getElementById('resultat').innerHTML = "Les solutions sont des nombres complexes : " + solution1 + " et " + solution2;
+      var normeSolution1 = calculerNorme(solution1);
+      //document.getElementById('resultatNorme').innerHTML = "La norme de la solution 1 est : " + normeSolution1;
     }
+}
+
+function calculerNorme(nombreComplexe) {
+  // Séparation de la partie réelle et de la partie imaginaire
+  var parties = nombreComplexe.split("+");
+  var reel = parseFloat(parties[0].trim());
+  var imaginaire = parseFloat(parties[1].replace("i", "").trim());
+
+  // Calcul de la norme
+  var norme = Math.sqrt(reel ** 2 + imaginaire ** 2);
+
+  return norme.toFixed(2); // Renvoie la norme avec une précision de deux décimales
 }
 function actualiserPage() {
     location.reload();

@@ -5,24 +5,25 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Resolution Equations du second degré de la forme aX2 + bX + c = 0 </h1>
+  <h1>Resolution Equations du second degré de la forme aX<sup><strong>2</strong></sup> + bX + c = 0 </h1>
   <div id="equation-form">
     <div class="input-group">
       <label for="a">a:</label>
-      <input type="text" id="a" placeholder="Coefficient a">
+      <input type="text" id="a" placeholder="Coefficient a">  X<sup><strong>2</strong></sup>
     </div>
     <div class="input-group">
       <label for="b">b:</label>
-      <input type="text" id="b" placeholder="Coefficient b">
+      <input type="text" id="b" placeholder="Coefficient b">  X
     </div>
     <div class="input-group">
       <label for="c">c:</label>
-      <input type="text" id="c" placeholder="Coefficient c">
+      <input type="text" id="c" placeholder="Coefficient c">  
     </div>
     <button onclick="calculerEquation()">Calculer</button>
     <button onclick="actualiserPage()">Actualiser</button>
   </div>
   <div id="resultat"></div>
+  <div id="resultatNorme"></div>
 </div>
 
 <script src="script.js"></script>

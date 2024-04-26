@@ -68,15 +68,15 @@ label {
 input {
   padding: 10px;
   border-radius: 5px;
-  border: none;
-  font-size: 16px;
+  border: 1px solid black;
+  font-size: 10px;
 }
 
 button {
   margin-top: 10px;
-  background-color: #4CAF50;
+  background-color: black;
   color: white;
-  border: darkolivegreen;
+  border: black;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
