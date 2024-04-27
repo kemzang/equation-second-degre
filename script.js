@@ -11,9 +11,15 @@ function calculerEquation()
       return;
     }
   
-    var discriminant = b * b - 4 * a * c;
-  
-    if (discriminant > 0) {
+    
+    if(a === 0)
+    {
+      var x1 = -c / b;
+      document.getElementById('resultat').innerHTML = "La solution de l'équation est x = " + x1.toFixed(2);
+    }
+    else{
+      var discriminant = b * b - 4 * a * c;
+       if (discriminant > 0) {
       var x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
       var x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
       document.getElementById('resultat').innerHTML = "Les solutions sont x1 = " + x1.toFixed(2) + " et x2 = " + x2.toFixed(2);
@@ -31,7 +37,14 @@ function calculerEquation()
       norme= normeSolution1;
       //document.getElementById('resultatNorme').innerHTML = "La norme de la solution 1 est : " + normeSolution1;
     }
+  }
     beginAnimation()
+}
+
+
+function actualiserPage() {
+  location.reload();
+ 
 }
 
 function calculerNorme(nombreComplexe) {
@@ -45,10 +58,7 @@ function calculerNorme(nombreComplexe) {
 
   return norme.toFixed(2); // Renvoie la norme avec une précision de deux décimales
 }
-function actualiserPage() {
-    location.reload();
-   
-  }
+
 
   function beginAnimation(){
     var dinisaur=document.getElementById("dinosaur");
@@ -102,4 +112,52 @@ function setAnimation(dinisaur,b){
       dinisaur.style.cssText=" transform: translateX(70%)";
     } 
 }
+
+
+
+
+
+/*---------------------Ajout de l'effet d'ombre-------------------------------------------*/
+window.addEventListener('load', () => {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+ 
+  if (isDarkMode(hours, minutes)) {
+      activateDarkMode();
+  }
+
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=VOTRE_CLE_API`)
+              .then(response => response.json())
+              .then(data => {
+                  const sunrise = new Date(data.sys.sunrise * 1000);
+                  const sunset = new Date(data.sys.sunset * 1000);
+
+                 
+                  if (isDarkMode(now, sunrise, sunset)) {
+                      activateDarkMode();
+                  }
+              })
+              .catch(error => console.error('Une erreur s\'est produite : ', error));
+      });
+  }
+});
+
+function isDarkMode(currentTime, sunrise, sunset) {
+
+  return currentTime > sunset || currentTime < sunrise;
+}
+
+function activateDarkMode() {
+  document.body.classList.add('dark-mode');
+}
+
   
